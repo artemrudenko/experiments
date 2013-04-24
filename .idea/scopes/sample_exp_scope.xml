@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="sample_exp_scope" pattern="file:saveDataToExcel.py" />
+</component>
