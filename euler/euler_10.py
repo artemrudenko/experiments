@@ -13,7 +13,9 @@ def is_prime(num):
         return False
     elif num == 2:
         return True
-    for i in xrange(3, int(math.sqrt(num) + 1), 1):
+    elif num % 2 == 0:
+        return False
+    for i in xrange(3, int(math.sqrt(num) + 1), 2):
         if num % i == 0:
             return False
     return True
@@ -22,16 +24,15 @@ def is_prime(num):
 def euler_10_while(endOfRange):
     res = 0
     curr = 0
-    while curr <= endOfRange:
+    while curr < endOfRange:
         if is_prime(curr):
             res += curr
         curr += 1
     return res
 
 
-def get_prime(end):
-    curr = 3
-    while curr <= end:
+def get_primes(curr):
+    while True:
         if is_prime(curr):
             yield curr
         curr += 1
@@ -39,12 +40,15 @@ def get_prime(end):
 
 def euler_10_yield(endOfRange):
     res = 2
-    for val in get_prime(endOfRange):
+    for val in get_primes(3):
+        if val >= endOfRange:
+            break
         res += val
     return res
 
 
 from datetime import datetime
+
 start = datetime.today()
 print euler_10_while(2000000)
 print 'euler_10_while', (datetime.today() - start).total_seconds()
